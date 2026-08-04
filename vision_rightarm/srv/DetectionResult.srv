@@ -1,0 +1,9 @@
+# 请求：
+---
+# 响应：
+string[] names
+float64[] widths
+float64[] heights
+float64[] coords_x
+float64[] coords_y
+float64[] coords_z
