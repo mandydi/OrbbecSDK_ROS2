@@ -1,0 +1,27 @@
+# Docker Compose for OrbbecSDK_ROS2
+version: "3.8"
+
+services:
+  orbbec_ros2:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: orbbec_ros2:humble
+    container_name: orbbec_ros2
+    # For USB camera access, uncomment:
+    # privileged: true
+    # devices:
+    #   - /dev/bus/usb:/dev/bus/usb
+    network_mode: host
+    ipc: host
+    environment:
+      - DISPLAY=${DISPLAY}
+      - QT_X11_NO_MITSHM=1
+    volumes:
+      # GUI support
+      - /tmp/.X11-unix:/tmp/.X11-unix:ro
+      # Output directory for captured data
+      - ./output:/ros2_ws/src/OrbbecSDK_ROS2/output
+    stdin_open: true
+    tty: true
+    command: bash
